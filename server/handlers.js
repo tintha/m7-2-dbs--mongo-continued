@@ -59,7 +59,7 @@ const bookSeat = async (req, res) => {
     if (!creditCard || !expiration || !fullName || !email) {
       return res.status(400).json({
         status: 400,
-        message: "Please provide all required field!",
+        message: "Please provide all required fields!",
       });
     } else {
       const result = await db.collection("seats").updateOne(query, newValue);
