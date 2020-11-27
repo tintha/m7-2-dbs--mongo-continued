@@ -21,19 +21,20 @@ for (let r = 0; r < row.length; r++) {
   }
 }
 
+const newSeats = Object.values(seats);
+
 const batchImport = async () => {
   try {
     const client = await MongoClient(MONGO_URI, options);
     await client.connect();
-    const db = client.db("ticket_booker");
-    const result = await db.collection("seats").insertMany([...seats]);
+    const db = client.db("ticket_booker3");
+    const result = await db.collection("seats").insertMany([...newSeats]);
     assert.strictEqual(newSeats.length, result.insertedCount);
     console.log("success");
+    client.close();
   } catch (err) {
     console.log(err.stack);
   }
-
-  client.close();
 };
 
 batchImport();
