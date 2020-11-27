@@ -26,7 +26,7 @@ const getSeats = async (req, res) => {
         message: "No seat found",
       });
     } else {
-      const newSeats = seats.reduce((acc, cur, i) => {
+      const newSeats = seats.reduce((acc, cur) => {
         acc[cur._id] = cur;
         return acc;
       }, {});
