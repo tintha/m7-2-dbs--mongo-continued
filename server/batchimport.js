@@ -1,5 +1,6 @@
+"use strict";
 const { MongoClient } = require("mongodb");
-const { assert } = require("console");
+const assert = require("assert");
 
 require("dotenv").config();
 const { MONGO_URI } = process.env;
@@ -27,7 +28,7 @@ const batchImport = async () => {
   try {
     const client = await MongoClient(MONGO_URI, options);
     await client.connect();
-    const db = client.db("ticket_booker");
+    const db = client.db("ticket_booking");
     const result = await db.collection("seats").insertMany([...newSeats]);
     assert.strictEqual(newSeats.length, result.insertedCount);
     console.log("success");
