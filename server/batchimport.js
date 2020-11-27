@@ -27,7 +27,7 @@ const batchImport = async () => {
   try {
     const client = await MongoClient(MONGO_URI, options);
     await client.connect();
-    const db = client.db("ticket_booker3");
+    const db = client.db("ticket_booker");
     const result = await db.collection("seats").insertMany([...newSeats]);
     assert.strictEqual(newSeats.length, result.insertedCount);
     console.log("success");
