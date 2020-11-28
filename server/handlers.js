@@ -14,7 +14,6 @@ const getSeats = async (req, res) => {
   try {
     const client = await MongoClient(MONGO_URI, options);
     await client.connect();
-
     const db = client.db("ticket_booking");
     const seats = await db.collection("seats").find().toArray();
     if (seats.length === 0) {
@@ -27,7 +26,6 @@ const getSeats = async (req, res) => {
         acc[cur._id] = cur;
         return acc;
       }, {});
-
       res.status(200).json({
         status: 200,
         seats: newSeats,
@@ -64,7 +62,6 @@ const bookSeat = async (req, res) => {
       assert.strictEqual(1, result.modifiedCount);
       res.status(200).json({ status: 200, success: true });
     }
-
     client.close();
   } catch (err) {
     console.log(err);
